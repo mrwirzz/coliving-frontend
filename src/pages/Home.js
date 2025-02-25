@@ -2,6 +2,7 @@ import backgroundImage from '../assets/backgroundwindow.png';
 
 const Home = () => {
   return (
+    
     <div>
       {/* Hero Section */}
       <section 
@@ -17,6 +18,7 @@ const Home = () => {
           alignItems: "center"
         }}
       >
+
         <h1 className="text-4xl font-bold bg-black bg-opacity-50 p-4 rounded-lg">
           DISCOVER YOUR PLACE — WHERE CONNECTION, GROWTH, AND FULFILLMENT COME TO LIFE
         </h1>
@@ -26,46 +28,29 @@ const Home = () => {
       </section>
 
       {/* Section 1: What is in */}
-      <section className="container my-5 text-center">
-        <h2 className="text-3xl font-bold">What is in?</h2>
-        <div className="mt-4">
-          <p className="d-flex align-items-center justify-content-center mb-2">
-          <img src="/assets/Laptop.png" alt="Web Booking" className="me-2" style={{width: "24px"}} />
-            Web booking
-          </p>
-          <p className="d-flex align-items-center justify-content-center mb-2">
-            <img src="/assets/couch.PNG" alt="Furnished Houses" className="me-2" style={{width: "24px"}} />
-            Fully furnished houses
-          </p>
-          <p className="d-flex align-items-center justify-content-center mb-2">
-            <img src="/assets/utensils_and_plate.png" alt="Equipped Kitchen" className="me-2" style={{width: "24px"}} />
-            Fully equipped kitchen
-          </p>
-          <p className="icon-text">
-            <img src="/assets/Electricity.png" alt="Bills Included" className="me-2" style={{width: "24px"}} />
-            Bills included
-          </p>
-          <p className="icon-text">
-            <img src="/assets/Wifi On.png" alt="Free Wi-Fi" className="me-2" style={{width: "24px"}} />
-            Free Wi-Fi
-          </p>
-          <p className="icon-text">
-            <img src="/assets/workplace.png" alt="Workspaces" className="me-2" style={{width: "24px"}} />
-            Workspaces in each room
-          </p>
-          <p className="icon-text">
-            <img src="/assets/Lock 04.png" alt="Long Term Rentals" className="me-2" style={{width: "24px"}} />
-            Mid to long term rentals
-          </p>
-          <p className="icon-text">
-            <img src="/assets/Phone call.png" alt="Swift Assistance" className="me-2" style={{width: "24px"}} />
-            Swift assistance
-          </p>
-        </div>
-      </section>
+      <section className="container my-5 text-center border border-gray-200 rounded-lg p-5">
+  <h2 className="text-3xl font-bold mb-5">What is in</h2>
+  <div className="row">
+    {[
+      { icon: "/assets/Laptop.png", text: "Web booking" },
+      { icon: "/assets/couch.PNG", text: "Fully furnished houses" },
+      { icon: "/assets/utensils_and_plate.png", text: "Fully equipped kitchen" },
+      { icon: "/assets/Electricity.png", text: "Bills included" },
+      { icon: "/assets/Wifi On.png", text: "Free Wi-Fi" },
+      { icon: "/assets/workplace.png", text: "Workspaces in each room" },
+      { icon: "/assets/Lock 04.png", text: "Mid to long term rentals" },
+      { icon: "/assets/Phone call.png", text: "Swift assistance" },
+    ].map((item, index) => (
+      <div key={index} className="col-md-6 d-flex align-items-center justify-content-center mb-3">
+        <img src={item.icon} alt={item.text} className="me-2" style={{ width: "24px" }} />
+        <p className="mb-0">{item.text}</p>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* Section 2: Pamper Me Add-ons */}
-      <section className="bg-light py-5 text-center">
+      <section className="bg-light py-5 text-center border border-gray-200 rounded-lg p-8">
         <h2 className="text-3xl font-bold">
           <img src="/assets/Gift.png" alt="Pamper" className="me-2" style={{width: "34px"}}/>
           Pamper Me Add-ons (Coming Soon) 
@@ -90,32 +75,30 @@ const Home = () => {
       </section>
 
       {/* Section 3: Why Choose Cocoon? */}
-      <section className="container my-5 text-center">
-        <h2 className="text-3xl font-bold">Why Choose Cocoon?</h2>
+      <section className="container my-5 text-center border border-gray-200 rounded-lg p-8">
+        <h2 className="text-3xl font-bold">Why Choose Cocoon</h2>
         <p className="mt-3">We offer top-tier coliving experiences with flexibility, community, and comfort.</p>
       </section>
       {/* Section 4: Rooms */}
-      <section className="container my-5 text-center">
-        <h2 className="text-3xl font-bold">Rooms</h2>
-        <p className="mt-3">Reserve your perfect space</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-5">
-          {["Deluxe single bedroom", "Premier single room", "Junior double bedroom", "Executive double bedroom"].map((room, index) => (
-            <div key={index} className="p-4 border rounded-lg shadow">
-              <div className="h-40 bg-gray-200 flex items-center justify-center mb-3">[Image Placeholder]</div>
-              <h3 className="text-xl font-semibold">{room}</h3>
-              <p className="text-sm">Starting from xxx PLN</p>
-              <ul className="text-left mt-2 text-sm">
-                <li>Fully furnished</li>
-                <li>{room.includes("single") ? "Sofa bed" : "Luxurious double bed"}</li>
-                <li>Desk and chair</li>
-                <li>Wardrobe with full-length mirror</li>
-                <li>Flexible annual lease</li>
-                <li>Penalty-free 30-day notice</li>
-                <li>Fixed monthly online payments</li>
-                <li>All utilities included</li>
-                <li>No broker fees</li>
-                <li>No bills hassle</li>
-                </ul>
+           {/* Rooms Section */}
+           <section className="container my-5 text-center">
+        <h2 className="fw-bold mb-4">Rooms</h2>
+  <div className="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+    {[
+      { title: "Deluxe Single Bedroom", price: "xxx PLN", img: "/assets/room1.png", desc: "Fully furnished, Sofa bed, Desk and chair, Wardrobe with full-length mirror" },
+      { title: "Premier Single Room", price: "xxx PLN", img: "/assets/room2.png", desc: "Fully furnished, Luxurious sofa bed, Desk and chair, Wardrobe with full-length mirror" },
+      { title: "Junior Double Bedroom", price: "xxx PLN", img: "/assets/room3.png", desc: "Fully furnished, Luxurious double bed, Nightstand with lamp, Desk and chair" },
+      { title: "Executive Double Bedroom", price: "xxx PLN", img: "/assets/room4.png", desc: "Fully furnished, Luxurious double bed, Two nightstands with lamps, Balcony" }
+    ].map((room, index) => (
+      <div key={index} className="col">
+        <a href="#" className="d-flex align-items-center p-3 border rounded shadow-sm text-decoration-none text-dark bg-white hover-effect">
+          <img src={room.img} alt={room.title} className="img-fluid rounded me-3" style={{ width: "150px", height: "100px", objectFit: "cover" }} />
+          <div className="text-start">
+            <h3 className="h5 fw-bold">{room.title}</h3>
+            <p className="mb-1 fw-semibold">Starting from {room.price}</p>
+            <p className="text-muted small">{room.desc}</p>
+                </div>
+              </a>
             </div>
           ))}
         </div>
@@ -123,5 +106,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;

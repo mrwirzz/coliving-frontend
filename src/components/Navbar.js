@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import PopUpContact from './PopUpContact.js'; // Импортируем компонент PopUpContact
 
 const Navbar = () => {
+  // const [show, setShow] = useState(false);
+
+  // const handleClose = () => setShow(false); // Закрыть окно
+  // const handleShow = () => setShow(true);   // Открыть окно
+  
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{
       position: "fixed", // Закрепляем на верхней части экрана
@@ -45,7 +51,7 @@ const Navbar = () => {
               <Link to="/invest" className="nav-link">Invest</Link>
             </li>
             <li className="nav-item">
-              <Link to="/contact" className="nav-link">Contact</Link>
+            <button className="nav-link btn" onClick={() => {}}> Contact </button>
             </li>
           </ul>
           {/* Кнопка Log In */}

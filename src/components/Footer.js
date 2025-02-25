@@ -3,7 +3,7 @@ const Footer = () => {
     <footer className="text-center p-8 bg-black text-white">
       {/* Города и название */}
       <p className="text-gray-400">Warsaw – Dubai – Porto – Edinburgh</p>
-      <img src="/assets/Cocoon_Iconclear.png" alt="COCOON" className="mt-2" style={{ maxWidth: "200px", maxHeight: "200px" }} />
+      <img src="/assets/Cocoon_Icon(1).png" alt="COCOON" className="mt-2" style={{ maxWidth: "200px", maxHeight: "200px" }} />
       {/* Место для кликабельных картинок (контакты) */}
       <div className="mt-6 space-y-4">
       <a href="mailto:cocoon.city@gmail.com?subject=Hello&body=I want to contact you" 

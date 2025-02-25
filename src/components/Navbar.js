@@ -3,9 +3,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{
+      position: "fixed", // Закрепляем на верхней части экрана
+      top: 0, // Верхний отступ от экрана
+      left: 0, // Левый отступ
+      right: 0, // Правый отступ
+      zIndex: 1000, // Чтобы навбар был поверх других элементов
+      borderRadius: "10px", // Закругленные углы
+      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Тень
+    }}>
       <div className="container">
-        <Link to="/" className="navbar-brand fw-bold">COCOON</Link>
+        <Link to="/" className="navbar-brand fw-bold">
+          <img 
+            src="/assets/Cocoon_Icon(1).png" 
+            alt="COCOON" 
+            className="mt-2" 
+            style={{ maxWidth: "180px", maxHeight: "30px" }} 
+          />
+        </Link>
+        
         <button 
           className="navbar-toggler" 
           type="button" 
@@ -33,21 +49,21 @@ const Navbar = () => {
             </li>
           </ul>
           {/* Кнопка Log In */}
-<Link to="/login" className="btn ms-3" style={{
-  backgroundColor: "rgba(155, 57, 42, 0.8)", // Коричневый с 80% прозрачности
-  border: "2px solid black", // Черная граница
-  color: "white", // Белый текст
-  width: "178px", // Ширина
-  height: "38px", // Высота
-  fontWeight: "bold",
-  fontSize: "16px", // Чуть больше шрифт
-  textAlign: "center", // Выравнивание текста
-  display: "flex", 
-  justifyContent: "center", 
-  alignItems: "center"
-}}>
-  Log In
-</Link>
+          <Link to="/login" className="btn ms-3" style={{
+            backgroundColor: "rgba(155, 57, 42, 0.8)", // Коричневый с 80% прозрачности
+            border: "2px solid black", // Черная граница
+            color: "white", // Белый текст
+            width: "178px", // Ширина
+            height: "38px", // Высота
+            fontWeight: "bold",
+            fontSize: "16px", // Чуть больше шрифт
+            textAlign: "center", // Выравнивание текста
+            display: "flex", 
+            justifyContent: "center", 
+            alignItems: "center"
+          }}>
+            Log In
+          </Link>
         </div>
       </div>
     </nav>

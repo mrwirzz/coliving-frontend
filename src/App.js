@@ -5,7 +5,7 @@ import AppRouter from "./routes/AppRouter";
 
 function App() {
   return (
-    <div className="font-sans">
+    <div  className="font-sans" style={{ backgroundColor: "rgba(247, 216, 184, 0.84)" }}>
       <AppRouter />
     </div>
   );

@@ -9,13 +9,14 @@ const Navbar = () => {
   // const handleShow = () => setShow(true);   // Открыть окно
   
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{
+    <nav className="navbar navbar-expand-lg navbar-light" style={{
       position: "fixed", // Закрепляем на верхней части экрана
       top: 0, // Верхний отступ от экрана
       left: 0, // Левый отступ
       right: 0, // Правый отступ
       zIndex: 1000, // Чтобы навбар был поверх других элементов
       borderRadius: "10px", // Закругленные углы
+      backgroundColor: "rgba(152, 191, 202, 0.85) ",
       boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Тень
     }}>
       <div className="container">
@@ -24,7 +25,7 @@ const Navbar = () => {
             src="/assets/Cocoon_Icon(1).png" 
             alt="COCOON" 
             className="mt-2" 
-            style={{ maxWidth: "180px", maxHeight: "30px" }} 
+            style={{ maxWidth: "360px", maxHeight: "60px" }} 
           />
         </Link>
         

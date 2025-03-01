@@ -2,12 +2,17 @@ import React from 'react';
 
 const Invest = () => {
   return (
+
+
     <section className="container py-5">
       {/* Page Header */}
       <div className="text-center mb-5">
         <h2 className="fw-bold">Invest with Us</h2>
       </div>
-
+      <section className="container my-5 text-center rounded-lg p-8">
+    <h2 className="text-3xl font-bold">Why Choose Cocoon</h2>
+    <p className="mt-3">We offer top-tier coliving experiences with flexibility, community, and comfort.</p>
+  </section>,
       {/* Key Benefits Section */}
       <div className="row mb-5">
         <div className="col-md-6">

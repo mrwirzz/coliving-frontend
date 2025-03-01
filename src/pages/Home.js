@@ -40,6 +40,12 @@ const Home = () => {
       { icon: "/assets/workplace.png", text: "Workspaces in each room" },
       { icon: "/assets/Lock 04.png", text: "Mid to long term rentals" },
       { icon: "/assets/Phone call.png", text: "Swift assistance" },
+      { icon: "/assets/Gift.png", text: "Pamper Me Add-ons (Coming Soon)" },
+      { icon: "/assets/Airplane.png", text: "Airport transportation" },
+      { icon: "/assets/Car.png", text: "Chauffeur" },
+      { icon: "/assets/chef.png", text: "Cook" },
+      { icon: "/assets/Discount.png", text: "Spa discounts" }
+
     ].map((item, index) => (
       <div key={index} className="col-md-6 d-flex align-items-center justify-content-center mb-3">
         <img src={item.icon} alt={item.text} className="me-2" style={{ width: "24px" }} />
@@ -48,37 +54,6 @@ const Home = () => {
     ))}
   </div>
 </section>
-
-      {/* Section 2: Pamper Me Add-ons */}
-      <section className="bg-light py-5 text-center border border-gray-200 rounded-lg p-8">
-        <h2 className="text-3xl font-bold">
-          <img src="/assets/Gift.png" alt="Pamper" className="me-2" style={{width: "34px"}}/>
-          Pamper Me Add-ons (Coming Soon) 
-        </h2>
-        <div className="mt-3">
-        <p className="d-flex align-items-center justify-content-center mb-2">
-          <img src="/assets/Airplane.png" alt="transportation" className="me-2" style={{width: "24px"}} />
-          Airport transportation
-          </p>
-          <p className="d-flex align-items-center justify-content-center mb-2">
-            <img src="/assets/Car.png" alt="chauffeur" className="me-2" style={{width: "24px"}} />
-            chauffeur
-          </p>
-          <p className="d-flex align-items-center justify-content-center mb-2">
-            <img src="/assets/chef.png" alt="cook" className="me-2" style={{width: "24px"}} />
-            cook
-          </p>
-          <p className="icon-text">
-            <img src="/assets/Discount.png" alt="Bills Included" className="me-2" style={{width: "24px"}} />
-            spa discounts</p>
-            </div>
-      </section>
-
-      {/* Section 3: Why Choose Cocoon? */}
-      <section className="container my-5 text-center border border-gray-200 rounded-lg p-8">
-        <h2 className="text-3xl font-bold">Why Choose Cocoon</h2>
-        <p className="mt-3">We offer top-tier coliving experiences with flexibility, community, and comfort.</p>
-      </section>
       {/* Section 4: Rooms */}
            {/* Rooms Section */}
            <section className="container my-5 text-center">

@@ -91,7 +91,7 @@ const Home = () => {
       </section>
 
       {/* Rooms Section */}
-      <section className="container my-5 text-center">
+      <section id="rooms" className="container my-5 text-center">
         <h2 className="fw-bold mb-4">Rooms</h2>
         <div className="row row-cols-1 row-cols-md-2 g-4 justify-content-center" >
           {rooms.map((room, index) => (

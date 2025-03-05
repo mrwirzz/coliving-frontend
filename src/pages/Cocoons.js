@@ -1,15 +1,28 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-
+import BookButton from "../features/bookingbutton.js";
+import { useNavigate } from "react-router-dom";
 const Cocoons = () => {
+  const navigate = useNavigate();
+
+  const handleBookClick = () => {
+    navigate("/#rooms");
+    setTimeout(() => {
+      const roomsSection = document.getElementById("rooms");
+      if (roomsSection) {
+        roomsSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+
   return (
     <section className="py-5 text-center bg-light">
       <Container>
-        <h2 className="fw-bold mb-4">Cocoons</h2>
-        <p className="text-muted mb-5">
+        <h2 className="fw-bold mb-4 fs-1">Cocoons</h2>
+        <p className="text-muted mb-5 fs-4">
           We offer a diverse range of property types, from residences to boutique retreats.
         </p>
-        
+
         <Row className="g-4">
           {/* Cocoon Place */}
           <Col md={6}>
@@ -28,6 +41,7 @@ const Cocoons = () => {
                   A place where the rhythm of work and play is the same, and the only thing you need to focus on is feeling at home.
                 </p>
                 <p className="fw-bold">📍 Poland – Pruszkow</p>
+                <BookButton onClick={handleBookClick} />
               </Card.Body>
             </Card>
           </Col>
@@ -64,4 +78,3 @@ const Cocoons = () => {
 };
 
 export default Cocoons;
-

@@ -15,7 +15,7 @@ const Navbar = () => {
         right: 0,
         zIndex: 1000,
         borderRadius: "10px",
-        backgroundColor: "rgba(152, 191, 202, 0.85)",
+        backgroundColor: "rgba(152, 191, 202, 0.96)",
         boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)"
       }}>
         <div className="container">

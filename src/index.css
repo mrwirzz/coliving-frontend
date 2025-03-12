@@ -9,4 +9,9 @@
   
   body {
     padding-top: 80px; /* Подстраивай под высоту navbar */
+    font-family: 'Bodoni MT', 'Bodoni', serif;
+  }
+
+  :root {
+    --bs-body-font-family: 'Bodoni MT', 'Bodoni', serif;
   }

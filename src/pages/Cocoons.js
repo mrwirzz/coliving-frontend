@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import BookButton from "../features/bookingbutton.js";
 import { useNavigate } from "react-router-dom";
+import backgroundImage from "../assets/Cocoonback1.jpg";
 const Cocoons = () => {
   const navigate = useNavigate();
 
@@ -16,7 +17,18 @@ const Cocoons = () => {
   };
 
   return (
-    <section className="py-5 text-center bg-light">
+    <section className="py-5 text-center bg-light"
+              className="text-center text-white p-10"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
       <Container>
         <h2 className="fw-bold mb-4 fs-1">Cocoons</h2>
         <p className="text-muted mb-5 fs-4">

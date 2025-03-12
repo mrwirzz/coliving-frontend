@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PopupContact from './PopupContact.js'; // Исправлено с PopUpContact на PopupContact
+import PopupContact from './PopupContact.js';
 
 const Navbar = () => {
   const [showContact, setShowContact] = useState(false);
@@ -15,7 +15,7 @@ const Navbar = () => {
         right: 0,
         zIndex: 1000,
         borderRadius: "10px",
-        backgroundColor: "rgba(152, 191, 202, 0.96)",
+        backgroundColor: "rgba(157, 189, 198, 0.96)",
         boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)"
       }}>
         <div className="container">
@@ -57,7 +57,7 @@ const Navbar = () => {
             </ul>
 
             <Link to="/login" className="btn ms-3" style={{
-              backgroundColor: "rgba(155, 57, 42, 0.8)",
+              backgroundColor: "rgb(127, 190, 207) ",
               border: "2px solid black",
               color: "white",
               width: "178px",

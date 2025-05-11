@@ -6,9 +6,9 @@ const Layout = () => {
   return (
     <>
       <Navbar />
-      <div className="content">
-        <Outlet /> {/* Сюда будут подставляться страницы */}
-      </div>
+      <main style={{ marginTop: "80px" }}>
+        <Outlet />
+      </main>
       <Footer />
     </>
   );

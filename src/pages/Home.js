@@ -4,8 +4,11 @@ import PamperMeOptions from "../features/PamperMeOptions"; // Добавляем
 import backgroundImagewhatsin from "../assets/whatsin.jpg";
 
 const Home = () => {
-  const handleBookClick = (roomTitle) => {
-    alert(`Booking for ${roomTitle}`); // Логика бронирования
+  const handleBookClick = (roomTitle, roomPrice) => {
+    const message = `I would like to book the room: ${roomTitle}. The price is ${roomPrice}.`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappLink = `https://wa.me/48734663453?text=${encodedMessage}`;
+    window.open(whatsappLink, "_blank");
   };
 
   const rooms = [
@@ -134,25 +137,26 @@ const Home = () => {
     
       {/* Rooms Section */}
       <section id="rooms" className="container my-5 text-center">
-        <h2 className="fw-bold mb-4 border-bottom border-black pb-2">Rooms</h2>
-        <div className="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
-          {rooms.map((room, index) => (
-            <div key={index} className="col">
-              <div
-                className="p-3 rounded shadow-sm text-dark hover-effect border border-black"
-                style={{ backgroundColor: "rgba(248, 202, 196, 0.93)" }}
-              >
-                <img
-                  src={room.img}
-                  alt={room.title}
-                  className="img-fluid rounded me-3 border border-black"
-                  style={{ width: "150px", height: "100px", objectFit: "cover" }}
-                />
-                <div className="text-start">
-                  <h3 className="h5 fw-bold">{room.title}</h3>
-                  <p className="mb-1 fw-semibold">Starting from {room.price}</p>
-                  <p className="text-muted small">{room.desc}</p>
-                    <BookButton onClick={() => handleBookClick(room.title)} />
+      <h2 className="fw-bold mb-4 border-bottom border-black pb-2">Rooms</h2>
+      <div className="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+        {rooms.map((room, index) => (
+          <div key={index} className="col">
+            <div
+              className="p-3 rounded shadow-sm text-dark hover-effect border border-black"
+              style={{ backgroundColor: "rgba(248, 202, 196, 0.93)" }}
+            >
+              <img
+                src={room.img}
+                alt={room.title}
+                className="img-fluid rounded me-3 border border-black"
+                style={{ width: "150px", height: "100px", objectFit: "cover" }}
+              />
+              <div className="text-start">
+                <h3 className="h5 fw-bold">{room.title}</h3>
+                <p className="mb-1 fw-semibold">Starting from {room.price}</p>
+                <p className="text-muted small">{room.desc}</p>
+                {/* Кнопка с передачей информации о комнате */}
+                <BookButton onClick={() => handleBookClick(room.title, room.price)} />
                   </div>
                 </div>
               </div>
@@ -160,6 +164,7 @@ const Home = () => {
         </div>
       </section>
     </div>
+    
   );
 };
 

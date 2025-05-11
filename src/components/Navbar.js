@@ -1,10 +1,41 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PopupContact from './PopupContact.js';
+import Login from './Login';
+import Register from './Register';
+import { supabase } from '../config/supabase';
 
 const Navbar = () => {
   const [showContact, setShowContact] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  // Проверяем авторизацию при монтировании и после логина/логаута
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    };
+    getUser();
+
+    // Подписка на изменения сессии
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+    navigate('/');
+  };
 
   return (
     <>
@@ -56,27 +87,100 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <Link to="/login" className="btn ms-3" style={{
-              backgroundColor: "rgb(127, 190, 207) ",
-              border: "2px solid black",
-              color: "white",
-              width: "178px",
-              height: "38px",
-              fontWeight: "bold",
-              fontSize: "16px",
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center"
-            }}>
-              Log In
-            </Link>
+            {/* Кнопки авторизации */}
+            <div className="d-flex gap-2">
+              {!user ? (
+                <>
+                  <button 
+                    onClick={() => setShowLogin(true)}
+                    className="btn" 
+                    style={{
+                      backgroundColor: "rgb(127, 190, 207)",
+                      border: "2px solid black",
+                      color: "white",
+                      width: "100px",
+                      height: "38px",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      textAlign: "center",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    Log in
+                  </button>
+                  <button 
+                    onClick={() => setShowRegister(true)}
+                    className="btn" 
+                    style={{
+                      backgroundColor: "white",
+                      border: "2px solid black",
+                      color: "black",
+                      width: "140px",
+                      height: "38px",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      textAlign: "center",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    Register
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link 
+                    to="/account"
+                    className="btn"
+                    style={{
+                      backgroundColor: "rgb(127, 190, 207)",
+                      border: "2px solid black",
+                      color: "white",
+                      width: "120px",
+                      height: "38px",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      textAlign: "center",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    Account
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="btn"
+                    style={{
+                      backgroundColor: "white",
+                      border: "2px solid black",
+                      color: "black",
+                      width: "140px",
+                      height: "38px",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      textAlign: "center",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    log out
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Вызов компонента PopUpContact */}
+      {/* Модальные окна */}
       <PopupContact show={showContact} handleClose={() => setShowContact(false)} />
+      <Login show={showLogin} onHide={() => setShowLogin(false)} />
+      <Register show={showRegister} onHide={() => setShowRegister(false)} />
     </>
   );
 };

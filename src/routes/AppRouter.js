@@ -20,7 +20,6 @@ const AppRouter = () => {
         <Route path="invest" element={<Invest />} />
         <Route path="contact" element={<Contact />} />
         <Route path="account" element={<Account />} />
-        <Route path="admin" element={<AdminAccount />} />
       </Route>
       
       {/* 404 */}

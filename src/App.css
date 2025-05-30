@@ -36,6 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
 .hover-effect {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
@@ -65,6 +66,7 @@
   min-width: 300px;
   max-width: 400px;
   width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .popup-header {
@@ -72,6 +74,14 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.popup-header h3 {
+  margin: 0;
+  color: #333;
+  font-weight: bold;
 }
 
 .close-button {
@@ -79,6 +89,11 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
+  color: #666;
+}
+
+.close-button:hover {
+  color: #333;
 }
 
 .form-group {
@@ -88,6 +103,8 @@
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  color: #333;
+  font-weight: 500;
 }
 
 .form-group input {
@@ -95,6 +112,13 @@
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #7FBEFF;
+  box-shadow: 0 0 0 2px rgba(127, 190, 255, 0.2);
 }
 
 .submit-button {
@@ -106,8 +130,47 @@
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
 }
 
 .submit-button:hover {
   background-color: rgb(107, 170, 187);
+}
+
+/* Стили для Supabase Auth UI */
+.supabase-auth-ui_ui-container {
+  background-color: #98BFCA !important;
+  padding: 20px !important;
+  border-radius: 8px !important;
+}
+
+.supabase-auth-ui_ui-button {
+  background-color: rgb(127, 190, 207) !important;
+  color: white !important;
+  border: 2px solid black !important;
+  border-radius: 4px !important;
+  padding: 10px !important;
+  width: 100% !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  text-align: center !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: 10px !important;
+}
+
+.supabase-auth-ui_ui-input {
+  width: 100% !important;
+  padding: 8px !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  margin-bottom: 15px !important;
+}
+
+.supabase-auth-ui_ui-label {
+  display: block !important;
+  margin-bottom: 5px !important;
+  color: black !important;
 }

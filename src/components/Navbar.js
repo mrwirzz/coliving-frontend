@@ -1,39 +1,18 @@
-import { useState, useEffect } from "react";
+import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PopupContact from './PopupContact.js';
-import Login from './Login';
-import Register from './Register';
-import { supabase } from '../config/supabase';
+import AuthComponent from './Auth';
+import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = () => {
   const [showContact, setShowContact] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
-  const [user, setUser] = useState(null);
+  const [showAuth, setShowAuth] = useState(false);
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
-  // Проверяем авторизацию при монтировании и после логина/логаута
-  useEffect(() => {
-    const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-    };
-    getUser();
-
-    // Подписка на изменения сессии
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => {
-      listener.subscription.unsubscribe();
-    };
-  }, []);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
+  const handleSignOut = async () => {
+    await signOut();
     navigate('/');
   };
 
@@ -90,46 +69,25 @@ const Navbar = () => {
             {/* Кнопки авторизации */}
             <div className="d-flex gap-2">
               {!user ? (
-                <>
-                  <button 
-                    onClick={() => setShowLogin(true)}
-                    className="btn" 
-                    style={{
-                      backgroundColor: "rgb(127, 190, 207)",
-                      border: "2px solid black",
-                      color: "white",
-                      width: "100px",
-                      height: "38px",
-                      fontWeight: "bold",
-                      fontSize: "16px",
-                      textAlign: "center",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center"
-                    }}
-                  >
-                    Log in
-                  </button>
-                  <button 
-                    onClick={() => setShowRegister(true)}
-                    className="btn" 
-                    style={{
-                      backgroundColor: "white",
-                      border: "2px solid black",
-                      color: "black",
-                      width: "140px",
-                      height: "38px",
-                      fontWeight: "bold",
-                      fontSize: "16px",
-                      textAlign: "center",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center"
-                    }}
-                  >
-                    Register
-                  </button>
-                </>
+                <button 
+                  onClick={() => setShowAuth(true)}
+                  className="btn" 
+                  style={{
+                    backgroundColor: "rgb(127, 190, 207)",
+                    border: "2px solid black",
+                    color: "white",
+                    width: "140px",
+                    height: "38px",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                    textAlign: "center",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  Sign In
+                </button>
               ) : (
                 <>
                   <Link 
@@ -152,7 +110,7 @@ const Navbar = () => {
                     Account
                   </Link>
                   <button
-                    onClick={handleLogout}
+                    onClick={handleSignOut}
                     className="btn"
                     style={{
                       backgroundColor: "white",
@@ -168,7 +126,7 @@ const Navbar = () => {
                       alignItems: "center"
                     }}
                   >
-                    log out
+                    Log out
                   </button>
                 </>
               )}
@@ -179,8 +137,7 @@ const Navbar = () => {
 
       {/* Модальные окна */}
       <PopupContact show={showContact} handleClose={() => setShowContact(false)} />
-      <Login show={showLogin} onHide={() => setShowLogin(false)} />
-      <Register show={showRegister} onHide={() => setShowRegister(false)} />
+      {showAuth && <AuthComponent onClose={() => setShowAuth(false)} />}
     </>
   );
 };

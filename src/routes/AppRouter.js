@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import React,{ Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Cocoons from "../pages/Cocoons";
 import About from "../pages/About";
@@ -7,11 +7,12 @@ import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 import Layout from "../components/Layouts";
 import Account from "../pages/Account";
+import AdminAccount from "../pages/AdminAccount";
 
 const AppRouter = () => {
   return (
     <Routes>
-      {/* Layout рендерится для всех страниц */}
+      {/* Layout */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
@@ -19,9 +20,10 @@ const AppRouter = () => {
         <Route path="invest" element={<Invest />} />
         <Route path="contact" element={<Contact />} />
         <Route path="account" element={<Account />} />
+        <Route path="admin" element={<AdminAccount />} />
       </Route>
       
-      {/* 404 страница */}
+      {/* 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

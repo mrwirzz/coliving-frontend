@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from '../config/supabase';
+import { useNavigate } from 'react-router-dom';
+
 
 const Account = () => {
   const [user, setUser] = useState(null);
@@ -9,6 +11,7 @@ const Account = () => {
   const [selectedRoom, setSelectedRoom] = useState('');
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUser = async () => {
@@ -46,6 +49,51 @@ const Account = () => {
 
     getUser();
   }, []);
+
+  const handleDeleteAccount = async () => {
+    if (window.confirm('Are you sure what you want to delete your account?')) {
+      try {
+        // Сначала удаляем все бронирования пользователя
+        const { error: bookingsError } = await supabase
+          .from('bookings')
+          .delete()
+          .eq('user_id', user.id);
+
+        if (bookingsError) throw bookingsError;
+
+        // Затем удаляем сам аккаунт
+        const { error: deleteError } = await supabase.auth.admin.deleteUser(user.id);
+        if (deleteError) throw deleteError;
+
+        // Выходим из системы
+        await supabase.auth.signOut();
+        navigate('/');
+      } catch (error) {
+        console.error('Error deleting account:', error);
+        alert('Error deleting account');
+      }
+    }
+  };
+
+  const handleDeleteBooking = async (bookingId) => {
+    if (window.confirm('Are you sure what you want to cancel your booking?')) {
+      try {
+        const { error } = await supabase
+          .from('bookings')
+          .delete()
+          .eq('id', bookingId);
+
+        if (error) throw error;
+
+        // Обновляем список бронирований
+        setBookings(bookings.filter(booking => booking.id !== bookingId));
+        alert('Booking canceled');
+      } catch (error) {
+        console.error('Error deleting booking:', error);
+        alert('Error deleting booking');
+      }
+    }
+  };
 
   const handleBooking = async (e) => {
     e.preventDefault();
@@ -112,6 +160,17 @@ const Account = () => {
               <h5 className="card-title">User Info</h5>
               <p>Email: {user.email}</p>
               <p>Name: {user.user_metadata?.name || 'No data'}</p>
+              <button 
+                onClick={handleDeleteAccount}
+                className="btn btn-danger mt-3"
+                style={{
+                  backgroundColor: "#dc3545",
+                  color: "white",
+                  border: "2px solid black"
+                }}
+              >
+                Delete account
+              </button>
             </div>
           </div>
 
@@ -178,6 +237,17 @@ const Account = () => {
                       <p>status: {booking.status}</p>
                       <p>checkin: {new Date(booking.check_in_date).toLocaleDateString()}</p>
                       <p>checkout: {new Date(booking.check_out_date).toLocaleDateString()}</p>
+                      <button
+                        onClick={() => handleDeleteBooking(booking.id)}
+                        className="btn btn-danger mt-2"
+                        style={{
+                          backgroundColor: "#dc3545",
+                          color: "white",
+                          border: "2px solid black"
+                        }}
+                      >
+                        Cancel booking
+                      </button>
                     </div>
                   ))}
                 </div>

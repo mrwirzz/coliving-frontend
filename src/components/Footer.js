@@ -4,8 +4,52 @@ const Footer = () => {
   return (
     <footer className="text-center p-8 bg-black text-white">
       {/* Города и название */}
-      <p className="text-gray-400">Warsaw – Dubai – Porto – Edinburgh</p>
-      <img src="/assets/Cocoon_Icon(1).png" alt="COCOON" className="mt-2" style={{ maxWidth: "200px", maxHeight: "200px" }} />
+      <p className="text-gray-400 space-x-2">
+        <a
+          href="https://maps.app.goo.gl/LxkcUmA5CAoznVEP8?g_st=aw"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Pruszków
+        </a>{" "}
+        –{" "}
+        <a
+          href="https://maps.app.goo.gl/PTGPbNVwiJT2NtHDA?g_st=aw"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Warsaw
+        </a>{" "}
+        –{" "}
+        <a
+          href="https://maps.app.goo.gl/hDuuxLvLTqBx4PpT9?g_st=aw"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Dubai
+        </a>{" "}
+        –{" "}
+        <a
+          href="https://maps.app.goo.gl/GnUgVR3TEzbsaDYG6?g_st=aw"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Porto
+        </a>{" "}
+        –{" "}
+        <a
+          href="https://maps.app.goo.gl/wJEARtaJXBNJFpuL7?g_st=aw"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Edinburgh
+        </a>
+      </p>
 
 
       {/* Место для кликабельных картинок (контакты) */}
